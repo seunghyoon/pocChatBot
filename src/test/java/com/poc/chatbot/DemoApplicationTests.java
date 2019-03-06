@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.poc.chatbot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
