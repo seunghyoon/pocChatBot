@@ -20,13 +20,26 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.boot:spring-boot-starter-web'
 	
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	
 	compile("org.apache.commons:commons-collections4:4.3")
 	
-	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	// Log4j2 라이브러리
+	compile 'org.springframework.boot:spring-boot-starter-log4j2'
+	compile 'org.apache.logging.log4j:log4j-api'
+	compile 'org.apache.logging.log4j:log4j-core'
+	compile 'com.lmax:disruptor:3.3.4'	
 }
+
+// Log4j2 충돌 제외 라이브러리
+configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+}
+

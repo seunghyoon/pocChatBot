@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true" scanPeriod="30 seconds">
-    <property name="LOGS_ABSOLUTE_PATH" value="./logs" />
- 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %-5level %logger{36}| %msg%n</pattern>
-        </encoder>
-    </appender>
- 
-    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS_ABSOLUTE_PATH}/logback.log</file>
-        <encoder>
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %-5level %logger{36}| %msg%n</pattern>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_ABSOLUTE_PATH}/logback.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <!-- or whenever the file size reaches 100MB -->
-                <maxFileSize>100MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-    </appender>
-    <logger name="com.example.demo"  level="debug" additivity="true">
-        <appender-ref ref="ROLLING" />
-    </logger>
-    
-    <logger name="org.springframework"  level="info">
-        <appender-ref ref="STDOUT" />
-    </logger>
-    
- 
-    <root level="debug">
-        <appender-ref ref="STDOUT" />
-    </root>
- 
-</configuration>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%m%n"/>
+        </Console>
+        <RollingRandomAccessFile name="RollingRandomAccessFile"
+                                 fileName="./logs/log4j2.log"
+                                 immediateFlush="true"
+                                 append="true"
+                                 filePattern="./logs/${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %-5level %logger{36}| %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+
+        <AsyncLogger name="com.poc.chatbot" level="debug" includeLocation="false">
+            <AppenderRef ref="RollingRandomAccessFile"/>
+        </AsyncLogger>
+
+
+        <Logger name="org.springframework" level="debug" >
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+
+        <Root level="debug" includeLocation="true">
+            <AppenderRef ref="STDOUT" />
+            <AppenderRef ref="RollingRandomAccessFile"/>
+        </Root>
+    </Loggers>
+
+
+</Configuration>

@@ -2,8 +2,9 @@ package com.poc.chatbot.biz;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poc.chatbot.common.message.GenericMessage;
@@ -30,9 +31,10 @@ public class RestSampleUserController {
         message.setData(map);
     }
 	
-	@RequestMapping("/messageGenericMessage")
+	@RequestMapping(value = "/messageGenericMessage",  
+			method= {RequestMethod.GET, RequestMethod.POST}, 
+			produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
     public GenericMessage messageGenericMessage(GenericMessage message, String code) {
-
 		Map<String, String> map = new HashMap<>();
         map.put("제목", "메밀꽃 필 무렵");
         map.put("저자", "채영욱");
