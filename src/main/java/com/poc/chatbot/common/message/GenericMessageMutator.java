@@ -2,6 +2,8 @@ package com.poc.chatbot.common.message;
 
 public interface GenericMessageMutator {
 	
+	public String getResponseCode();
+	
 	public boolean isCustomeMessage();
 	
 	public String getMessage();

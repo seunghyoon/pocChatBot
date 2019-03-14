@@ -23,17 +23,18 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND) // 404
+	//@ResponseStatus(HttpStatus.NOT_FOUND) // 404
+	@ResponseStatus(HttpStatus.OK) // 404
 	//@ResponseBody
 	public <T> T handleResourceNotFoundException(GenericMessage messages, ResourceNotFoundException exception) {
 		if(true) { //Ajax
-			//messages.setError();
-			//messages.setReturnCode(exception.getCode());
-			//messages.setMessageDatas(exception.getMessages());
+			messages.setFAILE();
+			messages.setReturnCode(exception.getCode());
+			messages.setMessageDatas(exception.getMessages());
 		}else {
 			
 		}
-		return null;
+		return (T) messages;
 	}
 	
 	@ExceptionHandler(BedRequestException.class)

@@ -6,7 +6,9 @@ public interface GenericMessage {
     String SUCCESS = "SUCCESS";
 
     String FAILE = "FAILE";
-
+    
+    public void setResponseCode(String responseCode);
+    
     public void setSUCCESS();
 
     public void setFAILE();

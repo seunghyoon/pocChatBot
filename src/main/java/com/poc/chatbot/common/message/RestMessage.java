@@ -14,6 +14,8 @@ public class RestMessage implements GenericMessage, GenericMessageMutator, Seria
 	 */
 	private static final long serialVersionUID = 6424741204213487371L;
 	
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private String responseCode = "";
 	
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String returnCode = "";
@@ -86,13 +88,13 @@ public class RestMessage implements GenericMessage, GenericMessageMutator, Seria
 	
 	@Override
 	public void setSUCCESS() {
-		this.setReturnCode(SUCCESS);
+		this.setResponseCode(SUCCESS);
 		
 	}
 
 	@Override
 	public void setFAILE() {
-		this.setReturnCode(FAILE);
+		this.setResponseCode(FAILE);
 	}
 
 	@Override
@@ -157,6 +159,17 @@ public class RestMessage implements GenericMessage, GenericMessageMutator, Seria
 		if (!StringUtils.isEmpty(this.bizResCode)) {
 			this.message = service.getMessage(this.bizResCode, this.messageDatas);
 		}
+	}
+
+	@Override
+	public String getResponseCode() {
+		return responseCode;
+	}
+
+	@Override
+	public void setResponseCode(String responseCode) {
+		this.responseCode = responseCode;
+		
 	}
 
 }
