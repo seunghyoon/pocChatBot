@@ -1,14 +1,27 @@
 package com.poc.chatbot.common.message;
 
 public interface GenericMessageMutator {
+	
+	public boolean isCustomeMessage();
+	
+	public String getMessage();
 
-    boolean isCustomeMessage();
+	public Object getData();
 
-    Object getData();
+	public String getReturnCode();
+	
+    public String getBizResCode();
+    
+    public String getTransactionId();
+    
+    public String getMaskServerIp();
 
-    String getMessage();
+    public Object getMessageDatas();
 
-    String getReturnCode();
+	public void transformMessage(LocaleAwareMessageService service);
+	
+	public String getServerTime();
+	
+	
 
-    void transformMessage(LocaleAwareMessageService service);
 }

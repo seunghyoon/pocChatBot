@@ -38,8 +38,11 @@ public class RestSampleUserController {
 		Map<String, String> map = new HashMap<>();
         map.put("제목", "메밀꽃 필 무렵");
         map.put("저자", "채영욱");
+        log.debug("GenericMessage map {}" , map);
+
         message.setMessage(code);
         message.setData(map);
+        log.debug("GenericMessage {}" , message);
         return message;
     }
 }

@@ -29,7 +29,7 @@ public class MessageArgumentResolver implements HandlerMethodArgumentResolver {
                                   WebDataBinderFactory binderFactory) throws Exception {
 
         GenericMessage messages = new RestMessage();
-        messages.setOK();
+        messages.setSUCCESS();
 
         RequestContextHolder.getRequestAttributes().setAttribute(Const.GENERIC_MESSAGE, messages, RequestAttributes.SCOPE_REQUEST);
 

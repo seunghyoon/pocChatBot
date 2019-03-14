@@ -12,7 +12,7 @@ public class LocaleAwareMessageService {
     @Autowired
     private MessageSource messageSource;
 
-   public String getMessage(String code){
+   public String getMessage(String code, Object[] messageDatas){
         return messageSource.getMessage(code, null, LocaleContextHolder.getLocale());
     }
 

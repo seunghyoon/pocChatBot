@@ -1,20 +1,32 @@
 package com.poc.chatbot.common.message;
 
+
 public interface GenericMessage {
+	
+    String SUCCESS = "SUCCESS";
 
-    String OK = "OK";
+    String FAILE = "FAILE";
 
-    String NG = "NG";
+    public void setSUCCESS();
 
-    void setOK();
+    public void setFAILE();
 
-    void setNG();
+    public void enableCustomeMessage();
 
-    void enableCustomeMessage();
+    public void setMessage(String message);
 
-    void setMessage(String message);
+    public void setData(Object data);
 
-    void setData(Object data);
-
-    void setReturnCode(String returnCode);
+    public void setReturnCode(String returnCode);
+    
+    public void setBizResCode(String bizResCode);
+    
+    public void setTransactionId(String transactionId);
+    
+    public void setMaskServerIp(String maskServerIp);
+    
+    public void setMessageDatas(Object[] messageDatas);
+    
+    public void setServerTime(String serverTime);
+    
 }
