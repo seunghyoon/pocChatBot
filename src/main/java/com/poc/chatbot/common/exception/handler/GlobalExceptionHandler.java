@@ -27,9 +27,9 @@ public class GlobalExceptionHandler {
 	//@ResponseBody
 	public <T> T handleResourceNotFoundException(GenericMessage messages, ResourceNotFoundException exception) {
 		if(true) { //Ajax
-			messages.setError();
-			messages.setReturnCode(exception.getCode());
-			messages.setMessageDatas(exception.getMessages());
+			//messages.setError();
+			//messages.setReturnCode(exception.getCode());
+			//messages.setMessageDatas(exception.getMessages());
 		}else {
 			
 		}
@@ -41,9 +41,9 @@ public class GlobalExceptionHandler {
 	//@ResponseBody
 	public <T> T handleBedRequestException(GenericMessage messages, BedRequestException exception) {
 		if(true) { //Ajax
-			messages.setError();
-			messages.setReturnCode(exception.getCode());
-			messages.setMessageDatas(exception.getMessages());
+			//messages.setError();
+			//messages.setReturnCode(exception.getCode());
+			//messages.setMessageDatas(exception.getMessages());
 		}else {
 			
 		}
@@ -55,9 +55,9 @@ public class GlobalExceptionHandler {
 	//@ResponseBody
 	public <T> T handleNoContentException(GenericMessage messages, NoContentException exception) {
 		if(true) { //Ajax
-			messages.setError();
-			messages.setReturnCode(exception.getCode());
-			messages.setMessageDatas(exception.getMessages());
+			//messages.setError();
+			//messages.setReturnCode(exception.getCode());
+			//messages.setMessageDatas(exception.getMessages());
 		}else {
 			
 		}
