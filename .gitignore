@@ -1,6 +1,6 @@
 HELP.md
 .gradle
-/build/
+build/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
@@ -25,4 +25,4 @@ HELP.md
 /dist/
 /nbdist/
 /.nb-gradle/
-/bin/
+bin/
