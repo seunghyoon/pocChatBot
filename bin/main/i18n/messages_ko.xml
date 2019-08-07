@@ -4,7 +4,10 @@
     <entry key="OK">정상</entry>
     <entry key="NG">오류</entry>
     <entry key="msg000001">안녕하세요</entry>
-
+	
+	<entry key="HTTP.ERROR.404">페이지가 존재하지 않습니다.</entry>
+	
+	
     <entry key="CM000010">정상적으로 저장 되었습니다.</entry>
     <entry key="CM000020">저장이 되지 않았습니다.</entry>
     <entry key="CM000030">왼쪽과 오른쪽 사용자 정보가 일치하지 않습니다.</entry>
