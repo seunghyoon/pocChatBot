@@ -21,6 +21,9 @@ repositories {
 
 dependencies {
 	compile "org.springframework.boot:spring-boot-starter-web"
+	//compile "org.springframework.boot:spring-boot-starter-data-jpa"
+	compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0"
+	
 	
 	compileOnly "org.projectlombok:lombok"
 	annotationProcessor "org.projectlombok:lombok"
@@ -28,16 +31,18 @@ dependencies {
 	compile("org.apache.commons:commons-collections4:4.3")
 	compile("org.apache.commons:commons-lang3:3.8.1")
 	
+	compile fileTree(dir: 'extLib', include: '*.jar' )
+	
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
 	
-	// Log4j2 ∂Û¿Ã∫Í∑Ø∏Æ
+	// Log4j2 Ï∂©Îèå ÎùºÏù¥Î∏åÎü¨Î¶¨ Ï†úÏô∏ 
 	compile "org.springframework.boot:spring-boot-starter-log4j2"
 	compile "org.apache.logging.log4j:log4j-api"
 	compile "org.apache.logging.log4j:log4j-core"
 	compile "com.lmax:disruptor:3.3.4"	
 }
 
-// Log4j2 √Êµπ ¡¶ø‹ ∂Û¿Ã∫Í∑Ø∏Æ
+// Log4j2 Ï∂©Îèå ÎùºÏù¥Î∏åÎü¨Î¶¨ Ï†úÏô∏ 
 configurations {
 	all {
 		exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"

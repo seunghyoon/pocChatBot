@@ -10,11 +10,6 @@ public class PageController {
 	@Value("${web.config.default-page-size}")
 	private String defaultPageSize;
 
-	/**
-	 * �럹�씠吏� �젙蹂� �뀑�똿
-	 *
-	 * @param params �쁽�옱 �럹�씠吏� 踰덊샇 諛� �럹�씠吏� �궗�씠利�
-	 */
 	protected void initPageConfig(Map<String, Object> params) {
 
     	String currentPage = (String)params.get("currentPage");

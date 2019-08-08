@@ -1,8 +1,5 @@
 package com.poc.chatbot.common.exception;
 
-/**
- * 예외 처리 Base 타입 ==> check Exception BaseException extends 사용
- */
 public class BaseException extends RuntimeException{
 	
 	private static final long serialVersionUID = -3324817931455469171L;

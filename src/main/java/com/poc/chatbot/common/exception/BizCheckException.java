@@ -1,9 +1,6 @@
 package com.poc.chatbot.common.exception;
 
 
-/**
- * 비지니스 로직 예외 처리 사용 
- */
 
 public class BizCheckException extends BaseException{
 

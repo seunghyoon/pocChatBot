@@ -1,12 +1,16 @@
-package com.poc.chatbot.biz;
+package com.poc.chatbot.biz.sample.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.poc.chatbot.biz.sample.service.RestSampleUserService;
 import com.poc.chatbot.common.message.GenericMessage;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,17 +20,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RestSampleUserController {
 	
+	@Autowired
+	RestSampleUserService restSampleUserService;
+	
+	
 	@RequestMapping("/message")
     public void message(GenericMessage message, String code) {
 
-        // ¿¹¿Ü Å×½ºÆ®
+		// ì˜ˆì™¸ í…ŒìŠ¤íŠ¸
         if("1".equals(code)){
             throw new RuntimeException("CM000010");
         }
 
         Map<String, String> map = new HashMap<>();
-        map.put("Á¦¸ñ", "¸Þ¹Ð²É ÇÊ ¹«·Æ");
-        map.put("ÀúÀÚ", "Ã¤¿µ¿í");
+        map.put("dataCode", "CM000010");
+        map.put("dataMessage", "í…ŒìŠ¤íŠ¸");
         message.setMessage(code);
         message.setData(map);
     }
@@ -36,8 +44,8 @@ public class RestSampleUserController {
 			produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
     public GenericMessage messageGenericMessage(GenericMessage message, String code) {
 		Map<String, String> map = new HashMap<>();
-        map.put("Á¦¸ñ", "¸Þ¹Ð²É ÇÊ ¹«·Æ");
-        map.put("ÀúÀÚ", "Ã¤¿µ¿í");
+        map.put("dataCode", "CM000010");
+        map.put("dataMessage", "í…ŒìŠ¤íŠ¸");
         log.debug("GenericMessage map {}" , map);
 
         message.setMessage(code);
@@ -45,4 +53,15 @@ public class RestSampleUserController {
         log.debug("GenericMessage {}" , message);
         return message;
     }
+	
+	@RequestMapping(value = "/messageGenericMessage",  
+			method= {RequestMethod.GET, RequestMethod.POST}, 
+			produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public GenericMessage test(GenericMessage message, @RequestParam Map<String, Object> reqData) {
+        
+		message.setData(restSampleUserService.getRestSampleUserCreate(reqData));
+		message.setMessage("CM000010");
+		return message;
+    }
+	
 }

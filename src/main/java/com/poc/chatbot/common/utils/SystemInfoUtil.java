@@ -13,14 +13,23 @@ public class SystemInfoUtil {
 	public static final String SERVER_INFO_TESTBED = "TESTBED";
 	public static final String SERVER_INFO_PRODUCTION = "PRODUCTION";
 	
+	private static final Object cacheLock = new Object();
+	
+	private static String serverIpAddress = null;
+	
 	public static String getHostAddress(){
-		String hostAddress = "";
 		try {
-			hostAddress = InetAddress.getLocalHost().getHostAddress();
+			if(serverIpAddress == null) {
+				synchronized(cacheLock){
+					serverIpAddress = InetAddress.getLocalHost().getHostAddress();
+				}
+			}
+			
+			
 		} catch (UnknownHostException e) {
             log.trace("SystemInfoUtil.getHostAddress error : {}", e);
 		}
-		return hostAddress;
+		return serverIpAddress;
 	}
 	public static String getHostAddressMasking(){
     	String hostAddressMasking = "";

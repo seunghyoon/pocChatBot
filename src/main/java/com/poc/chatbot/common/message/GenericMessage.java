@@ -3,9 +3,9 @@ package com.poc.chatbot.common.message;
 
 public interface GenericMessage {
 	
-    String SUCCESS = "SUCCESS";
+    public static final String SUCCESS = "SUCCESS";
 
-    String FAILE = "FAILE";
+    public static final String FAILE = "FAILE";
     
     public void setResponseCode(String responseCode);
     

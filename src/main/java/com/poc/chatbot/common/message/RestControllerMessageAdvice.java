@@ -56,7 +56,7 @@ public class RestControllerMessageAdvice implements ResponseBodyAdvice<Object> {
         message.setBizResCode(((GenericMessageMutator) message).getBizResCode());
 		message.setServerTime(DateUtil.getNowLocalDateTime(DateUtil.PATTERN_SERVER_TIME_A));
 		message.setTransactionId(HttpServletUtil.getTransationId());
-		message.setMaskServerIp(SystemInfoUtil.getHostAddress());
+		message.setMaskServerIp(SystemInfoUtil.getHostAddressMasking());
         
         if(!((GenericMessageMutator) message).isCustomeMessage()){
             ((GenericMessageMutator) message).transformMessage(messageService);
