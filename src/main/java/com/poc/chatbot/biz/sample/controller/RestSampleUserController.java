@@ -54,12 +54,12 @@ public class RestSampleUserController {
         return message;
     }
 	
-	@RequestMapping(value = "/messageGenericMessage",  
+	@RequestMapping(value = "/createBasicDataTest",  
 			method= {RequestMethod.GET, RequestMethod.POST}, 
 			produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public GenericMessage test(GenericMessage message, @RequestParam Map<String, Object> reqData) {
-        
-		message.setData(restSampleUserService.getRestSampleUserCreate(reqData));
+    public GenericMessage createBasicDataTest(GenericMessage message, @RequestParam Map<String, Object> reqData) {
+        log.debug("RestSampleUserController.createBasicDataTest(), reqData {}", reqData);
+		message.setData(restSampleUserService.getRestSampleDataCreate(reqData));
 		message.setMessage("CM000010");
 		return message;
     }

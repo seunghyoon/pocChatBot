@@ -13,6 +13,7 @@ import com.poc.chatbot.common.exception.BedRequestException;
 import com.poc.chatbot.common.exception.NoContentException;
 import com.poc.chatbot.common.exception.ResourceNotFoundException;
 import com.poc.chatbot.common.message.GenericMessage;
+import com.poc.chatbot.common.utils.HttpServletUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -64,6 +65,24 @@ public class GlobalExceptionHandler {
 		}
 		return null;
 	}
+	
+	@ExceptionHandler({Exception.class})
+	@ResponseStatus(HttpStatus.OK) // 500
+	//@ResponseBody
+	public <T> T handleException(GenericMessage messages, Exception exception) {
+		String reqUrl = HttpServletUtil.getRequestUrI();
+		String transationId = HttpServletUtil.getTransationId();
+		
+		log.error(exception.getMessage(), exception);
+		if(true) { //Ajax
+			//messages.setError();
+			//messages.setReturnCode(exception.getCode());
+			//messages.setMessageDatas(exception.getMessages());
+		}else {
+			
+		}
+		return null;
+	} 
 	
 	private void writeLog(BaseException exception) {
 		log.error(exception.getCode(), exception.getMessages(), exception);

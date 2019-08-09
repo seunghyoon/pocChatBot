@@ -10,13 +10,12 @@ web:
     description: 페이지 당 기본 게시물 갯수
     default-page-size: 10
     max-page-size: 100  
-    
-datasource:
-  description: dataSource 설정
-  defaultdb:
+spring:
+  datasource:
+    defaultdb:
       platform: postgresql
-      driverClassName: org.postgresql.Driver
-      url: postgresql://127.0.0.1:5432/test_db
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://127.0.0.1:5432/test_db
       username: postgres
       password: sktysh12
       dbSettingTypeDescription: JNDI OR POOL

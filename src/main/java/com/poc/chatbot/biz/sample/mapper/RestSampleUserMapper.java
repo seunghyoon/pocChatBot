@@ -8,10 +8,15 @@ import org.apache.ibatis.annotations.Mapper;
 public interface RestSampleUserMapper {
 
 	
-	public int setCreateBasicSampleData(Map<String, Object> reqData);
+	public Integer selectBasicSampleMaxData();
 	
-	public int setCreatePartitionSampleData(Map<String, Object> reqData);
-
+	public Integer setCreateBasicSampleData(Map<String, Object> reqData);
+	
+	public Integer selectPartitionSampleMaxData();
+	
+	public Integer setCreatePartitionSampleData(Map<String, Object> reqData);
+	
+	
 	
 	
 }

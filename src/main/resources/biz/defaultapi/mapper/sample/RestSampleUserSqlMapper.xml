@@ -2,23 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.poc.chatbot.biz.sample.mapper.RestSampleUserMapper">
-	<select id="selectBasicSampleMaxData" resultType="int">
-		<![CDATA[
-			SELECT COUNT(*) + 1 FROM TEST.SAMPLE_TABLE
-		]]>  
-	</select>
+    <select id="selectBasicSampleMaxData" resultType="int">
+        <![CDATA[
+			SELECT COUNT(*) + 1 FROM TEST_DB.TEST.SAMPLE_TABLE
+        ]]>  
+    </select>
 
 
-	<insert id="setCreateBasicSampleData" parameterType="map">
-		<![CDATA[
-		]]>  
-	</insert>
-
+    <insert id="setCreateBasicSampleData" parameterType="map">
+        <![CDATA[
+            INSERT INTO TEST_DB.TEST.SAMPLE_TABLE (id, data, reg_data)
+		                                   VALUES (#{id}, #{data}, CURRENT_TIMESTAMP)            
+        ]]>  
+    </insert>
+    
+    <select id="selectPartitionSampleMaxData" resultType="int">
+        <![CDATA[
+			SELECT COUNT(*) + 1 FROM TEST.SAMPLE_PARTITION_TABLE
+        ]]>  
+    </select>
      
 
 	<insert id="setCreatePartitionSampleData" parameterType="map">
 		<![CDATA[
-
+             INSERT INTO TEST.SAMPLE_PARTITION_TABLE (id, data, reg_data)
+		                                      VALUES (#{id}, #{data}, CURRENT_TIMESTAMP)   
 		]]>  
 	</insert>
 </mapper>

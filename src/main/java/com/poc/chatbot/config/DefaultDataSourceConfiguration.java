@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -40,18 +42,20 @@ import org.springframework.beans.factory.annotation.Qualifier;
 @EnableTransactionManagement
 @MapperScan(basePackages = {"com.poc.chatbot.**.mapper"}, 
 			sqlSessionFactoryRef="defaultDbSqlSessionFactory")
+@Slf4j
 public class DefaultDataSourceConfiguration {
-	@Value("${datasource.defaultdb.jndi-name}")
+	@Value("${spring.datasource.defaultdb.jndi-name}")
 	private String jndiName;
 	
-	@Value("${datasource.defaultdb.dbSettingType}")
+	@Value("${spring.datasource.defaultdb.dbSettingType}")
 	private String dbSettingType;
 	
 	
 	@Primary
     @Bean(name="defaultDbDataSource")//, destroyMethod = "close")
-    @ConfigurationProperties(prefix="datasource.defaultdb")
+    @ConfigurationProperties(prefix="spring.datasource.defaultdb")
     public DataSource dataSource() {
+		
 		if("JNDI".equals(dbSettingType)){
 			JndiDataSourceLookup jdni = new JndiDataSourceLookup();
 	        jdni.setResourceRef(true);

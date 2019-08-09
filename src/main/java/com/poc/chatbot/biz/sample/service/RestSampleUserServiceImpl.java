@@ -3,9 +3,12 @@ package com.poc.chatbot.biz.sample.service;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.poc.chatbot.biz.sample.mapper.RestSampleUserMapper;
+import com.poc.chatbot.common.utils.StringUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,18 +20,36 @@ public class RestSampleUserServiceImpl implements RestSampleUserService{
 	@Autowired
 	private RestSampleUserMapper restSampleUserMapper;
 	
+	
 	@Override
-	public Map<String, Object> getRestSampleUserCreate(Map<String, Object> reqData) {
-		log.info("RestSampleUserServiceImpl.getRestSampleUserCreate(), reqData : {}", reqData);
-		restSampleUserMapper.setCreateBasicSampleData(reqData);
+	@Transactional
+	public Map<String, Object> getRestSampleDataCreate(Map<String, Object> reqData) {
+		
+		
+		log.debug("RestSampleUserServiceImpl.getRestSampleUserCreate(), reqData : {}", reqData);
+		Integer id = restSampleUserMapper.selectBasicSampleMaxData();
+		log.debug("RestSampleUserServiceImpl.getRestSampleUserCreate(), id : {}", id);
+		reqData.put("id", id);
+		reqData.put("data", StringUtil.getStringBufferAppend(id.toString(), "_샘플 BASIC 데이터 입력"));
+		log.debug("RestSampleUserServiceImpl.getRestSampleUserCreate(), reqData : {}", reqData);
+		
+		Integer creCnt = restSampleUserMapper.setCreateBasicSampleData(reqData);
+		log.debug("RestSampleUserServiceImpl.getRestSampleUserCreate(), creCnt : {}", creCnt);
 		return null;
 	}
-
+	
 	@Override
-	public Map<String, Object> getRestSampleUserCreatePartition(Map<String, Object> reqData) {
+	public Map<String, Object> getRestSampleDataCreatePartition(Map<String, Object> reqData) {
+
+		
 		log.info("RestSampleUserServiceImpl.getRestSampleUserCreatePartition(), reqData : {}", reqData);
-		restSampleUserMapper.setCreatePartitionSampleData(reqData);
+		Integer id = restSampleUserMapper.selectPartitionSampleMaxData();
+		log.info("RestSampleUserServiceImpl.getRestSampleUserCreatePartition(), id : {}", id);
+		reqData.put("id", id);
+		reqData.put("data", StringUtil.getStringBufferAppend(id.toString(), "_샘플 PARTITION 데이터 입력"));
+		Integer creCnt = restSampleUserMapper.setCreatePartitionSampleData(reqData);
+		log.info("RestSampleUserServiceImpl.getRestSampleUserCreatePartition(), creCnt : {}", creCnt);
+		
 		return null;
 	}
-
 }
