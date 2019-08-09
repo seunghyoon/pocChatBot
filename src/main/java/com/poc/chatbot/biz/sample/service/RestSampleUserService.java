@@ -10,5 +10,8 @@ public interface RestSampleUserService {
 	public Map<String, Object> getRestSampleDataCreate(Map<String, Object> reqData);
 	
 	public Map<String, Object> getRestSampleDataCreatePartition(Map<String, Object> reqData);
+	
+	public Map<String, Object> getRestJpaSampleDataCreatePartition(Map<String, Object> reqData);
 
+	
 }

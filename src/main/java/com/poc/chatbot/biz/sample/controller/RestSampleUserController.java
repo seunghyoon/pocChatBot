@@ -72,4 +72,17 @@ public class RestSampleUserController {
 		message.setMessage("CM000010");
 		return message;
     }
+	
+	
+	@RequestMapping(value = "/createJpaPartitionDataTest",  
+			method= {RequestMethod.GET, RequestMethod.POST}, 
+			produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public GenericMessage createJpaPartitionDataTest(GenericMessage message, @RequestParam Map<String, Object> reqData) {
+        log.debug("RestSampleUserController.createBasicDataTest(), reqData {}", reqData);
+		message.setData(restSampleUserService.getRestJpaSampleDataCreatePartition(reqData));
+		message.setMessage("CM000010");
+		return message;
+    }
+	
+	
 }
