@@ -10,16 +10,17 @@ web:
     description: 페이지 당 기본 게시물 갯수
     default-page-size: 10
     max-page-size: 100  
-spring:
-  datasource:
-    defaultdb:
-      platform: postgresql
-      driver-class-name: org.postgresql.Driver
-      jdbc-url: jdbc:postgresql://127.0.0.1:5432/test_db
-      username: postgres
-      password: sktysh12
-      dbSettingTypeDescription: JNDI OR POOL
-      dbSettingType: POOL
-      jndi-name: java:comp/env/BIZ_JNDI
+
+datasource:
+  defaultdb:
+    platform: postgresql
+    driver-class-name: org.postgresql.Driver
+    jdbc-url: jdbc:postgresql://127.0.0.1:5432/test_db
+    username: postgres
+    password: sktysh12
+    dbSettingTypeDescription: JNDI OR POOL
+    dbSettingType: POOL
+    jndi-name: java:comp/env/BIZ_JNDI
+
 logging:
   config: classpath:log4j2.xml

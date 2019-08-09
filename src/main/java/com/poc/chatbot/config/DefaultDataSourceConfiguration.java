@@ -44,16 +44,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 			sqlSessionFactoryRef="defaultDbSqlSessionFactory")
 @Slf4j
 public class DefaultDataSourceConfiguration {
-	@Value("${spring.datasource.defaultdb.jndi-name}")
+	@Value("${datasource.defaultdb.jndi-name}")
 	private String jndiName;
 	
-	@Value("${spring.datasource.defaultdb.dbSettingType}")
+	@Value("${datasource.defaultdb.dbSettingType}")
 	private String dbSettingType;
 	
 	
 	@Primary
     @Bean(name="defaultDbDataSource")//, destroyMethod = "close")
-    @ConfigurationProperties(prefix="spring.datasource.defaultdb")
+    @ConfigurationProperties(prefix="datasource.defaultdb")
     public DataSource dataSource() {
 		
 		if("JNDI".equals(dbSettingType)){
