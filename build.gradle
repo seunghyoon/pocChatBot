@@ -21,7 +21,14 @@ repositories {
 
 dependencies {
 	compile "org.springframework.boot:spring-boot-starter-web"
+	
+	
+	// jpa
 	compile "org.springframework.boot:spring-boot-starter-data-jpa"
+	compile "com.querydsl:querydsl-jpa"
+	compile "com.querydsl:querydsl-apt"
+	
+	//mybatis
 	compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0"
 	
 	

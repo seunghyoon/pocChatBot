@@ -35,6 +35,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
+        
 logging:
   config: classpath:log4j2.xml
